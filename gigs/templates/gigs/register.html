@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Register — Campus Hustle{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-3xl rounded-3xl bg-white p-8 shadow-sm">
+    <h1 class="text-2xl font-semibold text-slate-900">Create your account</h1>
+    <p class="mt-2 text-slate-600">Sign up with your Makerere student details so you can post and reply to gigs.</p>
+
+    <form method="post" class="mt-8 space-y-6">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="grid gap-6">
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">Username</label>
+                {{ form.username }}
+                {{ form.username.errors }}
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">Email</label>
+                {{ form.email }}
+                {{ form.email.errors }}
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">Phone number</label>
+                {{ form.phone_number }}
+                {{ form.phone_number.errors }}
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">WhatsApp number</label>
+                {{ form.whatsapp_number }}
+                {{ form.whatsapp_number.errors }}
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">Password</label>
+                {{ form.password1 }}
+                {{ form.password1.errors }}
+            </div>
+            <div>
+                <label class="mb-2 block text-sm font-medium text-slate-700">Confirm password</label>
+                {{ form.password2 }}
+                {{ form.password2.errors }}
+            </div>
+        </div>
+        <button type="submit" class="w-full rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700">Register</button>
+    </form>
+</div>
+{% endblock %}
