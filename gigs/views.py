@@ -129,6 +129,10 @@ def login_view(request):
 			)
 			if user is not None:
 				login(request, user)
+				if form.cleaned_data.get('remember_me'):
+					request.session.set_expiry(1209600)  # 2 weeks
+				else:
+					request.session.set_expiry(0)  # browser close
 				messages.success(request, 'You are now logged in.')
 				return redirect('dashboard')
 	else:

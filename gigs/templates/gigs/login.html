@@ -20,7 +20,16 @@
             {{ form.password }}
             {{ form.password.errors }}
         </div>
+        
+        <div class="flex items-center">
+            {{ form.remember_me }}
+            <label for="id_remember_me" class="ml-2 block text-sm text-slate-700 select-none cursor-pointer">Remember me</label>
+        </div>
+
         <button type="submit" class="w-full rounded-full bg-slate-900 px-5 py-3 text-sm font-semibold text-white hover:bg-slate-700">Login</button>
     </form>
+    <div class="mt-6 text-center text-sm text-slate-600">
+        Don't have an account? <a href="{% url 'register' %}" class="font-semibold text-slate-900 hover:underline">Create a new account</a>
+    </div>
 </div>
 {% endblock %}

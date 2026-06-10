@@ -19,6 +19,15 @@ class UserRegistrationForm(UserCreationForm):
         model = User
         fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 'whatsapp_number', 'bio', 'password1', 'password2']
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if 'username' in self.fields:
+            self.fields['username'].widget.attrs.update({'class': 'input', 'autocomplete': 'username'})
+        if 'password1' in self.fields:
+            self.fields['password1'].widget.attrs.update({'class': 'input', 'autocomplete': 'new-password'})
+        if 'password2' in self.fields:
+            self.fields['password2'].widget.attrs.update({'class': 'input', 'autocomplete': 'new-password'})
+
     def save(self, commit=True):
         user = super().save(commit=False)
         user.email = self.cleaned_data['email']
@@ -76,5 +85,6 @@ class GigForm(forms.ModelForm):
 
 
 class CustomLoginForm(AuthenticationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input'}))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'autocomplete': 'username'}))
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'input', 'autocomplete': 'current-password'}))
+    remember_me = forms.BooleanField(required=False, initial=True, widget=forms.CheckboxInput(attrs={'class': 'rounded border-slate-300 text-slate-900 focus:ring-slate-900'}))
