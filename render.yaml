@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: campus-hustle-web
+    env: docker
+    dockerfilePath: Dockerfile
+    plan: starter
+    envVars:
+      - key: DJANGO_DEBUG
+        value: 'False'
+      - key: DJANGO_ALLOWED_HOSTS
+        value: 'localhost,127.0.0.1'
